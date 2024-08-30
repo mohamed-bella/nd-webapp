@@ -1,0 +1,43 @@
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+
+<main>
+  <div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md mt-8">
+    <h1 class="text-3xl font-semibold mb-6">Dashboard</h1>
+    <% if (successMessage) { %>
+          <% if (successMessage.length > 0) { %>
+               <div class="text-red-300"><%= successMessage %></div>
+          <% } %>
+     <% } %>
+
+    <!-- Dog Listings -->
+    <div class="bg-gray-100 p-4 rounded-lg shadow mb-6">
+      <h2 class="text-xl font-semibold mb-4">My Listings</h2>
+      <% if (dogs.length > 0) { %>
+        <ul class="space-y-4">
+          <% dogs.forEach(dog => { %>
+            <li class="border-b pb-4">
+              <h3 class="text-lg font-semibold"><%= dog.name %> (<%= dog.breed %>)</h3>
+              <p><%= dog.description %></p>
+              <p>Price: <%= dog.price %> MAD</p>
+              <p>Location: <%= dog.location.city %>, <%= dog.location.region %></p>
+              <img src="<%= dog.picture %>" alt="Picture of <%= dog.name %>" class="w-32 h-32 object-cover mt-2">
+              <a href="dashboard/chien/<%= dog._id %>" class="btn btn-primary mt-2">View Details</a>
+              <a href="dashboard/chien/<%= dog._id %>/edit" class="btn btn-secondary mt-2">Edit Listing</a>
+              <form action="dashboard/chien/<%= dog._id %>/delete" method="POST" class="mt-2 inline">
+                <button type="submit" class="btn btn-danger">Delete Listing</button>
+              </form>
+            </li>
+          <% }) %>
+        </ul>
+      <% } else { %>
+        <p>You have no listings yet.
+          <p>
+               <a href="/vendre-votre-chien" class="btn btn-primary">Add a new dog</a></p>
+          </p> 
+      <% } %>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer.ejs') %>

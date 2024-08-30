@@ -1,0 +1,47 @@
+html {
+     background-color : #ffffff3b; 
+}
+body {
+     background-color : #ffffff3b;
+     font-family:  sans-serif;
+     font-optical-sizing: auto;
+     font-weight: 500;
+     font-style: normal;
+ }
+ 
+ main {
+     margin: 10px auto;
+     max-width: 800px;
+     padding: 20px 20px;
+     /* background-color: #ffffff; */
+ }
+ 
+ .navbar {
+     background-color: #00712D;
+ }
+ 
+ .navbar a {
+     color: #ffffff;
+     font-weight: 800;
+ }
+
+
+ .card.image-full:before {
+     position: relative;
+     content: "";
+     z-index: 10;
+     border-radius: var(--rounded-box, 1rem);
+     --tw-bg-opacity: 1;
+     background-color: oklch(0.25 0.01 255.85);
+     opacity: .75;
+ }
+
+.card .btn {
+     background-color: #FF5722;
+}
+h1,h2 {
+     font-family: "Sora", sans-serif;
+}
+footer {
+     bottom: 0;
+}

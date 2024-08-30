@@ -1,0 +1,89 @@
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+
+<main class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md mt-8">
+  <h2 class="text-2xl font-semibold mb-6 text-center">Modifier les Informations du Chien</h2>
+  <form id="dogEditForm" class="space-y-4" method="POST" action="/dashboard/chien/<%= dog._id %>/edit" >
+    <!-- Step 1: Basic Information -->
+    <div class="step" id="step1">
+      <h3 class="text-xl font-semibold mb-4">Informations de Base</h3>
+      <div class="form-control">
+        <label class="label" for="name">
+          <span class="label-text">Nom du Chien</span>
+        </label>
+        <input type="text" name="name" id="name" value="<%= dog.name %>" placeholder="Entrez le nom du chien" class="input input-bordered w-full" required>
+      </div>
+      <div class="form-control">
+        <label class="label" for="breed">
+          <span class="label-text">Race du Chien</span>
+        </label>
+        <input type="text" name="breed" id="breed" value="<%= dog.breed %>" placeholder="Entrez la race du chien" class="input input-bordered w-full" required>
+      </div>
+      <div class="form-control">
+        <label class="label" for="age">
+          <span class="label-text">Âge du Chien (en années)</span>
+        </label>
+        <input type="number" name="age" id="age" value="<%= dog.age %>" placeholder="Entrez l'âge du chien" class="input input-bordered w-full" required>
+      </div>
+      <div class="form-control">
+        <label class="label" for="sex">
+          <span class="label-text">Sexe du Chien (mâle/femelle)</span>
+        </label>
+        <select class="select select-bordered w-full" name="sex" id="sex">
+          <option value="male" <%= dog.sex === 'male' ? 'selected' : '' %>>Mâle</option>
+          <option value="female" <%= dog.sex === 'female' ? 'selected' : '' %>>Femelle</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Step 2: Details -->
+    <div class="step" id="step2">
+      <h3 class="text-xl font-semibold mb-4">Détails</h3>
+      <div class="form-control">
+        <label class="label" for="description">
+          <span class="label-text">Description</span>
+        </label>
+        <textarea name="description" id="description" placeholder="Décrivez le chien" class="textarea textarea-bordered w-full" required><%= dog.description %></textarea>
+      </div>
+      <div class="form-control">
+        <label class="label" for="city">
+          <span class="label-text">Ville</span>
+        </label>
+        <input type="text" name="location[city]" id="city" value="<%= dog.location.city %>" placeholder="Entrez votre ville" class="input input-bordered w-full" required>
+      </div>
+      <div class="form-control">
+        <label class="label" for="region">
+          <span class="label-text">Région</span>
+        </label>
+        <input type="text" name="location[region]" id="region" value="<%= dog.location.region %>" placeholder="Entrez votre région" class="input input-bordered w-full" required>
+      </div>
+    </div>
+
+    <!-- Step 3: Price and Picture -->
+    <div class="step" id="step3">
+      <h3 class="text-xl font-semibold mb-4">Prix et Photo</h3>
+      <div class="form-control">
+        <label class="label" for="price">
+          <span class="label-text">Prix</span>
+        </label>
+        <input type="number" name="price" id="price" value="<%= dog.price %>" placeholder="Entrez le prix" class="input input-bordered w-full" required>
+      </div>
+    </div>
+
+    <div class="form-control">
+     <label class="label" for="picture">
+       <span class="label-text">Téléchargez une Nouvelle Photo</span>
+     </label>
+     <input type="file" id="picture" class="file-input file-input-bordered w-full" accept="image/*" name="picture">
+     <img src="<%= dog.picture %>" alt="<%= dog.name %>" class="w-full h-48 object-cover mt-4">
+   </div>
+   
+
+    <!-- Save Button -->
+    <div class="form-control mt-6">
+      <button type="submit" class="btn btn-primary w-full">Sauvegarder les Modifications</button>
+    </div>
+  </form>
+</main>
+
+<%- include('../partials/footer.ejs') %>
